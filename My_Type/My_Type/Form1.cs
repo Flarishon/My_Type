@@ -46,31 +46,41 @@ namespace My_Type
 
                 Fraction resFraction = new Fraction(0, 0);
 
+                bool isOperator = true;
+
                 switch (cmbOperation.Text)
                 {
                     case "+":
                         resFraction = firstFraction + secondFraction;
+                        isOperator = true;
                         break;
                     case "-":
                         resFraction = firstFraction - secondFraction;
+                        isOperator = true;
                         break;
                     case "*":
                         resFraction = firstFraction * secondFraction;
+                        isOperator = true;
                         break;
                     case "/":
                         resFraction = firstFraction / secondFraction;
+                        isOperator = true;
                         break;
                     case ">":
                         Fraction.IsFirstFractionGreater(firstFraction, secondFraction);
+                        isOperator = false;
                         break;
                     case "<":
                         Fraction.IsFirstFractionLess(firstFraction, secondFraction);
+                        isOperator = false;
                         break;
                     case "=":
                         Fraction.AreFractionsEqual(firstFraction, secondFraction);
+                        isOperator = false;
                         break;
                     case "^":
                         Fraction.ReduceFraction(firstFraction);
+                        isOperator = false; // тут убрать потом
                         break;
                     default:
                         resFraction = new Fraction(0, 0);
@@ -82,9 +92,17 @@ namespace My_Type
 
                 var resNum = int.Parse(textResultNum.Text);
                 var resDenum = int.Parse(textResultDenum.Text);
-                var reducedResFraction = Fraction.ReduceFraction(new Fraction(resNum, resDenum));
-                textFinResNum.Text = reducedResFraction.numerator.ToString();
-                textFinResDenum.Text = reducedResFraction.denumerator.ToString();
+                if (resDenum != 0 && isOperator == true)
+                {
+                    var reducedResFraction = Fraction.ReduceFraction(new Fraction(resNum, resDenum));
+                    textFinResNum.Text = reducedResFraction.numerator.ToString();
+                    textFinResDenum.Text = reducedResFraction.denumerator.ToString();
+                }
+                else
+                {
+                    textFinResNum.Text = "";
+                    textFinResDenum.Text = "";
+                }
             }
             catch (FormatException)
             {
