@@ -16,5 +16,181 @@ namespace My_Type
             this.numerator = numerator;
             this.denumerator = denumerator;
         }
+
+        public string Verbose()
+        {
+            return String.Format("{0}/{1}", this.numerator, this.denumerator);
+        }
+
+        public static int GetGCD(int firstNum, int secondNum)
+        {
+            while (secondNum != 0)
+            {
+                int tempNum = secondNum;
+                secondNum = firstNum % secondNum;
+                firstNum = tempNum;
+            }
+            return Math.Abs(firstNum);
+        }
+        public static int GetLCD(int firstNum, int secondNum)
+        {
+            return Math.Abs(firstNum * secondNum) / GetGCD(firstNum, secondNum);
+        }
+
+        public static Fraction operator +(Fraction firstFraction, Fraction secondFraction)
+        {
+            int firstNum = firstFraction.numerator;
+            int firstDenum = firstFraction.denumerator;
+            int secondNum = secondFraction.numerator;
+            int secondDenum = secondFraction.denumerator;
+
+            if (firstDenum == secondDenum)
+            {
+                return new Fraction(firstNum + secondNum, firstDenum);
+            }
+
+            int commonDen = GetLCD(firstDenum, secondDenum);
+
+            int newFirstNum = firstNum * (commonDen / firstDenum);
+            int newSecondNum = secondNum * (commonDen / secondDenum);
+
+            return new Fraction(newFirstNum + newSecondNum, commonDen);
+        }
+
+        public static Fraction operator -(Fraction firstFraction, Fraction secondFraction)
+        {
+            int firstNum = firstFraction.numerator;
+            int firstDenum = firstFraction.denumerator;
+            int secondNum = secondFraction.numerator;
+            int secondDenum = secondFraction.denumerator;
+
+            if (firstDenum == secondDenum)
+            {
+                return new Fraction(firstNum - secondNum, firstDenum);
+            }
+
+            int commonDen = GetLCD(firstDenum, secondDenum);
+
+            int newFirstNum = firstNum * (commonDen / firstDenum);
+            int newSecondNum = secondNum * (commonDen / secondDenum);
+
+            return new Fraction(newFirstNum - newSecondNum, commonDen);
+        }
+
+        public static Fraction operator *(Fraction firstFraction, Fraction secondFraction)
+        {
+            int resNum = firstFraction.numerator * secondFraction.numerator;
+            int resDenum = firstFraction.denumerator * secondFraction.denumerator;
+            var resFraction = new Fraction(resNum, resDenum);
+            return resFraction;
+        }
+
+        public static Fraction operator /(Fraction firstFraction, Fraction secondFraction)
+        {
+            int temp = secondFraction.numerator;
+            secondFraction.numerator = secondFraction.denumerator;
+            secondFraction.denumerator = temp;
+            int resNum = firstFraction.numerator * secondFraction.numerator;
+            int resDenum = firstFraction.denumerator * secondFraction.denumerator;
+            var resFraction = new Fraction(resNum, resDenum);
+            return resFraction;
+        }
+
+        public static Fraction ReduceFraction(Fraction resultFraction)
+        {
+            int gcd = GetLCD(resultFraction.numerator, resultFraction.denumerator);
+            var finResFraction = new Fraction(resultFraction.numerator / gcd, resultFraction.denumerator / gcd);
+            return finResFraction;
+        }
+
+        public static bool IsFirstFractionGreater(Fraction firstFraction, Fraction secondFraction)
+        {
+            if (firstFraction.denumerator == secondFraction.denumerator)
+            {
+                if (firstFraction.numerator > secondFraction.numerator)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                int lcd = GetLCD(firstFraction.denumerator, secondFraction.denumerator);
+                firstFraction.numerator = firstFraction.numerator * lcd;
+                secondFraction.numerator = secondFraction.numerator * lcd;
+
+                if (firstFraction.numerator > secondFraction.numerator)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public static bool IsFirstFractionLess(Fraction firstFraction, Fraction secondFraction)
+        {
+            if (firstFraction.denumerator == secondFraction.denumerator)
+            {
+                if (firstFraction.numerator < secondFraction.numerator)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                int lcd = GetLCD(firstFraction.denumerator, secondFraction.denumerator);
+                firstFraction.numerator = firstFraction.numerator * lcd;
+                secondFraction.numerator = secondFraction.numerator * lcd;
+
+                if (firstFraction.numerator < secondFraction.numerator)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        public static bool AreFractionsEqual(Fraction firstFraction, Fraction secondFraction)
+        {
+            if (firstFraction.denumerator == secondFraction.denumerator)
+            {
+                if (firstFraction.numerator == secondFraction.numerator)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                int lcd = GetLCD(firstFraction.denumerator, secondFraction.denumerator);
+                firstFraction.numerator = firstFraction.numerator * lcd;
+                secondFraction.numerator = secondFraction.numerator * lcd;
+
+                if (firstFraction.numerator == secondFraction.numerator)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
     }
 }

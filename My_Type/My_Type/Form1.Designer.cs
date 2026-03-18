@@ -30,7 +30,7 @@
         {
             textFirstNum = new TextBox();
             textFirstDenum = new TextBox();
-            comboBox1 = new ComboBox();
+            cmbOperation = new ComboBox();
             textSecondDenum = new TextBox();
             textSecondNum = new TextBox();
             label1 = new Label();
@@ -58,14 +58,15 @@
             textFirstDenum.TabIndex = 1;
             textFirstDenum.TextChanged += textFirstDenum_TextChanged;
             // 
-            // comboBox1
+            // cmbOperation
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "+", "-", "*", "/", ">", "<", "=", "==" });
-            comboBox1.Location = new Point(68, 26);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(50, 23);
-            comboBox1.TabIndex = 2;
+            cmbOperation.FormattingEnabled = true;
+            cmbOperation.Items.AddRange(new object[] { "+", "-", "*", "/", ">", "<", "=", "^" });
+            cmbOperation.Location = new Point(68, 26);
+            cmbOperation.Name = "cmbOperation";
+            cmbOperation.Size = new Size(50, 23);
+            cmbOperation.TabIndex = 2;
+            cmbOperation.SelectedIndexChanged += cmbOperation_SelectedIndexChanged;
             // 
             // textSecondDenum
             // 
@@ -136,9 +137,9 @@
             label3.AutoSize = true;
             label3.Location = new Point(270, 12);
             label3.Name = "label3";
-            label3.Size = new Size(135, 120);
+            label3.Size = new Size(127, 120);
             label3.TabIndex = 11;
-            label3.Text = "\"+\" - сложение\r\n\"-\" - вычитание\r\n\"*\" - умножение\r\n\"/\" - деление\r\n\">\" - больше\r\n\"<\" - меньше\r\n\"=\" - равно\r\n\"==\" - сократить дробь";
+            label3.Text = "\"+\" - сложение\r\n\"-\" - вычитание\r\n\"*\" - умножение\r\n\"/\" - деление\r\n\">\" - больше\r\n\"<\" - меньше\r\n\"=\" - равно\r\n\"^\" - сократить дробь";
             // 
             // Form1
             // 
@@ -154,7 +155,7 @@
             Controls.Add(label1);
             Controls.Add(textSecondDenum);
             Controls.Add(textSecondNum);
-            Controls.Add(comboBox1);
+            Controls.Add(cmbOperation);
             Controls.Add(textFirstDenum);
             Controls.Add(textFirstNum);
             Font = new Font("Segoe UI", 9F);
@@ -168,7 +169,7 @@
 
         private TextBox textFirstNum;
         private TextBox textFirstDenum;
-        private ComboBox comboBox1;
+        private ComboBox cmbOperation;
         private TextBox textSecondDenum;
         private TextBox textSecondNum;
         private Label label1;
