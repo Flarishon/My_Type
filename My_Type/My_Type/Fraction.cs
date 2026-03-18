@@ -96,11 +96,10 @@ namespace My_Type
             return resFraction;
         }
 
-        public static Fraction ReduceFraction(Fraction resultFraction)
+        public static Fraction ReduceFraction(Fraction fraction)
         {
-            int gcd = GetLCD(resultFraction.numerator, resultFraction.denumerator);
-            var finResFraction = new Fraction(resultFraction.numerator / gcd, resultFraction.denumerator / gcd);
-            return finResFraction;
+            int gcd = GetGCD(fraction.numerator, fraction.denumerator);
+            return new Fraction(fraction.numerator / gcd, fraction.denumerator / gcd);
         }
 
         public static bool IsFirstFractionGreater(Fraction firstFraction, Fraction secondFraction)

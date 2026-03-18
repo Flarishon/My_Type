@@ -79,6 +79,12 @@ namespace My_Type
 
                 textResultNum.Text = resFraction.numerator.ToString();
                 textResultDenum.Text = resFraction.denumerator.ToString();
+
+                var resNum = int.Parse(textResultNum.Text);
+                var resDenum = int.Parse(textResultDenum.Text);
+                var reducedResFraction = Fraction.ReduceFraction(new Fraction(resNum, resDenum));
+                textFinResNum.Text = reducedResFraction.numerator.ToString();
+                textFinResDenum.Text = reducedResFraction.denumerator.ToString();
             }
             catch (FormatException)
             {
