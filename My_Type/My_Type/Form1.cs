@@ -32,7 +32,21 @@ namespace My_Type
 
         private void cmbOperation_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ChangeGUI(false, "=");
+            if (cmbOperation.Text != "^" && textSecondNum.Text == "0" && textSecondDenum.Text == "0")
+            {
+                textSecondNum.Text = "";
+                textSecondDenum.Text = "";
+            }
+
+            if (cmbOperation.Text == "^")
+            {
+                ChangeGUI(false, "^");
+            }
+            else
+            {
+                ChangeGUI(false, "=");
+            }
+
             Calculate();
         }
 
@@ -57,6 +71,7 @@ namespace My_Type
                 Fraction resFraction = new Fraction(0, 0);
 
                 bool isOperator = true;
+
                 if (isOperator)
                 {
                     ChangeGUI(!isOperator, "=");
@@ -131,8 +146,8 @@ namespace My_Type
                 textFinResDenum.Visible = true;
                 textSecondNum.Visible = false;
                 textSecondDenum.Visible = false;
-                textSecondNum.Text = "";
-                textSecondDenum.Text = "";
+                textSecondNum.Text = "0";
+                textSecondDenum.Text = "0";
             }
             else if (strOperator == ">" || strOperator == "<" || strOperator == "=")
             {

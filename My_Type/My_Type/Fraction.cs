@@ -96,6 +96,9 @@ namespace My_Type
             return resFraction;
         }
 
+        //можно сделать операторы сравнения, просто нужно делать их попарно, то есть: если есть >, то должно быть и <
+        //только должно быть: оператор >, там все расписано, но в операторе < должно быть написано !(firstFraction > seconFraction)
+
         public static Fraction ReduceFraction(Fraction fraction)
         {
             int gcd = GetGCD(fraction.numerator, fraction.denumerator);
