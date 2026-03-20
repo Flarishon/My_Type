@@ -104,91 +104,52 @@ namespace My_Type
 
         public static string IsFirstFractionGreater(Fraction firstFraction, Fraction secondFraction)
         {
-            if (firstFraction.denumerator == secondFraction.denumerator)
+            int lcd = GetLCD(firstFraction.denumerator, secondFraction.denumerator);
+
+            int firstNum = firstFraction.numerator * (lcd / firstFraction.denumerator);
+            int secondNum = secondFraction.numerator * (lcd / secondFraction.denumerator);
+
+            if (firstNum > secondNum)
             {
-                if (firstFraction.numerator > secondFraction.numerator)
-                {
-                    return "True";
-                }
-                else
-                {
-                    return "False";
-                }
+                return "True";
             }
             else
             {
-                int lcd = GetLCD(firstFraction.denumerator, secondFraction.denumerator);
-                firstFraction.numerator = firstFraction.numerator * lcd;
-                secondFraction.numerator = secondFraction.numerator * lcd;
-
-                if (firstFraction.numerator > secondFraction.numerator)
-                {
-                    return "True";
-                }
-                else
-                {
-                    return "False";
-                }
+                return "False";
             }
         }
 
-        public static bool IsFirstFractionLess(Fraction firstFraction, Fraction secondFraction)
+        public static string IsFirstFractionLess(Fraction firstFraction, Fraction secondFraction)
         {
-            if (firstFraction.denumerator == secondFraction.denumerator)
+            int lcd = GetLCD(firstFraction.denumerator, secondFraction.denumerator);
+
+            int firstNum = firstFraction.numerator * (lcd / firstFraction.denumerator);
+            int secondNum = secondFraction.numerator * (lcd / secondFraction.denumerator);
+
+            if (firstNum < secondNum)
             {
-                if (firstFraction.numerator < secondFraction.numerator)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return "True";
             }
             else
             {
-                int lcd = GetLCD(firstFraction.denumerator, secondFraction.denumerator);
-                firstFraction.numerator = firstFraction.numerator * lcd;
-                secondFraction.numerator = secondFraction.numerator * lcd;
-
-                if (firstFraction.numerator < secondFraction.numerator)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return "False";
             }
         }
 
-        public static bool AreFractionsEqual(Fraction firstFraction, Fraction secondFraction)
+        public static string AreFractionsEqual(Fraction firstFraction, Fraction secondFraction)
         {
-            if (firstFraction.denumerator == secondFraction.denumerator)
+            int lcd = GetLCD(firstFraction.denumerator, secondFraction.denumerator);
+
+            int firstNum = firstFraction.numerator * (lcd / firstFraction.denumerator);
+            int secondNum = secondFraction.numerator * (lcd / secondFraction.denumerator);
+
+            if (firstNum == secondNum)
             {
-                if (firstFraction.numerator == secondFraction.numerator)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return "True";
             }
             else
             {
-                int lcd = GetLCD(firstFraction.denumerator, secondFraction.denumerator);
-                firstFraction.numerator = firstFraction.numerator * lcd;
-                secondFraction.numerator = secondFraction.numerator * lcd;
-
-                if (firstFraction.numerator == secondFraction.numerator)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return "False";
             }
         }
     }
