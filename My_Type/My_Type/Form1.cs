@@ -32,12 +32,13 @@ namespace My_Type
 
         private void cmbOperation_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ChangeGUI(false, "=");
             Calculate();
         }
 
         private void Calculate()
         {
-            if (cmbOperation.Text == "")
+            if ((cmbOperation.Text == "" || textSecondDenum.Text == "") && cmbOperation.Text != "^")
             {
                 ChangeGUI(false, "=");
                 textFinResNum.Text = "";
@@ -111,7 +112,6 @@ namespace My_Type
                         break;
                     default:
                         resFraction = new Fraction(0, 0);
-                        ChangeGUI(false, "=");
                         break;
                 }
             }
