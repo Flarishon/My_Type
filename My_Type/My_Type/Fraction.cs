@@ -102,17 +102,17 @@ namespace My_Type
             return new Fraction(fraction.numerator / gcd, fraction.denumerator / gcd);
         }
 
-        public static bool IsFirstFractionGreater(Fraction firstFraction, Fraction secondFraction)
+        public static string IsFirstFractionGreater(Fraction firstFraction, Fraction secondFraction)
         {
             if (firstFraction.denumerator == secondFraction.denumerator)
             {
                 if (firstFraction.numerator > secondFraction.numerator)
                 {
-                    return true;
+                    return "True";
                 }
                 else
                 {
-                    return false;
+                    return "False";
                 }
             }
             else
@@ -123,11 +123,11 @@ namespace My_Type
 
                 if (firstFraction.numerator > secondFraction.numerator)
                 {
-                    return true;
+                    return "True";
                 }
                 else
                 {
-                    return false;
+                    return "False";
                 }
             }
         }

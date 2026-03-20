@@ -34,7 +34,7 @@
             textSecondDenum = new TextBox();
             textSecondNum = new TextBox();
             label1 = new Label();
-            label2 = new Label();
+            labelEqual = new Label();
             textResultDenum = new TextBox();
             textResultNum = new TextBox();
             textFinResDenum = new TextBox();
@@ -94,15 +94,16 @@
             label1.TabIndex = 5;
             label1.Text = "Ответ:";
             // 
-            // label2
+            // labelEqual
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 16F);
-            label2.Location = new Point(182, 19);
-            label2.Name = "label2";
-            label2.Size = new Size(28, 30);
-            label2.TabIndex = 6;
-            label2.Text = "=";
+            labelEqual.AutoSize = true;
+            labelEqual.Font = new Font("Segoe UI", 16F);
+            labelEqual.Location = new Point(182, 19);
+            labelEqual.Name = "labelEqual";
+            labelEqual.Size = new Size(28, 30);
+            labelEqual.TabIndex = 6;
+            labelEqual.Text = "=";
+            labelEqual.Visible = false;
             // 
             // textResultDenum
             // 
@@ -110,6 +111,7 @@
             textResultDenum.Name = "textResultDenum";
             textResultDenum.Size = new Size(50, 23);
             textResultDenum.TabIndex = 8;
+            textResultDenum.Visible = false;
             // 
             // textResultNum
             // 
@@ -117,6 +119,7 @@
             textResultNum.Name = "textResultNum";
             textResultNum.Size = new Size(50, 23);
             textResultNum.TabIndex = 7;
+            textResultNum.Visible = false;
             // 
             // textFinResDenum
             // 
@@ -124,6 +127,7 @@
             textFinResDenum.Name = "textFinResDenum";
             textFinResDenum.Size = new Size(50, 23);
             textFinResDenum.TabIndex = 10;
+            textFinResDenum.Visible = false;
             // 
             // textFinResNum
             // 
@@ -151,7 +155,7 @@
             Controls.Add(textFinResNum);
             Controls.Add(textResultDenum);
             Controls.Add(textResultNum);
-            Controls.Add(label2);
+            Controls.Add(labelEqual);
             Controls.Add(label1);
             Controls.Add(textSecondDenum);
             Controls.Add(textSecondNum);
@@ -173,7 +177,7 @@
         private TextBox textSecondDenum;
         private TextBox textSecondNum;
         private Label label1;
-        private Label label2;
+        private Label labelEqual;
         private TextBox textResultDenum;
         private TextBox textResultNum;
         private TextBox textFinResDenum;

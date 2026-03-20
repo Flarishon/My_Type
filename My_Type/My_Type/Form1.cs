@@ -5,6 +5,7 @@ namespace My_Type
         public Form1()
         {
             InitializeComponent();
+            cmbOperation.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void textFirstNum_TextChanged(object sender, EventArgs e)
@@ -34,6 +35,9 @@ namespace My_Type
 
         private void Calculate()
         {
+            ChangeGUI(false, "=");
+            textFinResNum.Text = "";
+            textFinResDenum.Text = "";
             try
             {
                 var firstNum = int.Parse(textFirstNum.Text);
@@ -47,51 +51,89 @@ namespace My_Type
                 Fraction resFraction = new Fraction(0, 0);
 
                 bool isOperator = true;
+                ChangeGUI(!isOperator, "=");
 
                 switch (cmbOperation.Text)
                 {
                     case "+":
                         resFraction = firstFraction + secondFraction;
                         isOperator = true;
+                        ChangeGUI(isOperator, "+");
                         break;
                     case "-":
                         resFraction = firstFraction - secondFraction;
                         isOperator = true;
+                        ChangeGUI(isOperator, "-");
                         break;
                     case "*":
                         resFraction = firstFraction * secondFraction;
                         isOperator = true;
+                        ChangeGUI(isOperator, "*");
                         break;
                     case "/":
                         resFraction = firstFraction / secondFraction;
                         isOperator = true;
+                        ChangeGUI(isOperator, "/");
                         break;
                     case ">":
                         Fraction.IsFirstFractionGreater(firstFraction, secondFraction);
                         isOperator = false;
+                        ChangeGUI(isOperator, ">");
                         break;
                     case "<":
                         Fraction.IsFirstFractionLess(firstFraction, secondFraction);
                         isOperator = false;
+                        ChangeGUI(isOperator, "<");
                         break;
                     case "=":
                         Fraction.AreFractionsEqual(firstFraction, secondFraction);
                         isOperator = false;
+                        ChangeGUI(isOperator, "=");
                         break;
                     case "^":
                         Fraction.ReduceFraction(firstFraction);
-                        isOperator = false; // тут убрать потом
+                        isOperator = false;
+                        ChangeGUI(isOperator, "^");
                         break;
                     default:
                         resFraction = new Fraction(0, 0);
                         break;
                 }
+            }
+            catch (FormatException)
+            {
 
+            }
+        }
+
+        private void ChangeGUI(bool isOperator, string strOperator)
+        {
+            Fraction resFraction = new Fraction(0, 0);
+            labelEqual.Visible = isOperator;
+            textResultNum.Visible = isOperator;
+            textResultDenum.Visible = isOperator;
+            if (strOperator == "^")
+            {
+                textFinResDenum.Visible = true;
+                textSecondNum.Visible = false;
+                textSecondDenum.Visible = false;
+                textSecondNum.Text = "";
+                textSecondDenum.Text = "";
+            }
+            else if (strOperator == ">" || strOperator == "<" || strOperator == "=")
+            {
+                textFinResDenum.Visible = false;
+                textSecondNum.Visible = true;
+                textSecondDenum.Visible = true;
+            }
+            else
+            {
                 textResultNum.Text = resFraction.numerator.ToString();
                 textResultDenum.Text = resFraction.denumerator.ToString();
 
                 var resNum = int.Parse(textResultNum.Text);
                 var resDenum = int.Parse(textResultDenum.Text);
+
                 if (resDenum != 0 && isOperator == true)
                 {
                     var reducedResFraction = Fraction.ReduceFraction(new Fraction(resNum, resDenum));
@@ -103,12 +145,11 @@ namespace My_Type
                     textFinResNum.Text = "";
                     textFinResDenum.Text = "";
                 }
-            }
-            catch (FormatException)
-            {
 
+                textFinResDenum.Visible = true;
+                textSecondNum.Visible = true;
+                textSecondDenum.Visible = true;
             }
         }
-
     }
 }
