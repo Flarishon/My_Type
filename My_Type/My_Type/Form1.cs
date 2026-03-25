@@ -104,17 +104,38 @@ namespace My_Type
                         WriteFinResult(resFraction);
                         break;
                     case ">":
-                        textFinResNum.Text = Fraction.IsFirstFractionGreater(firstFraction, secondFraction);
+                        if (firstFraction > secondFraction)
+                        {
+                            textFinResNum.Text = "True";
+                        }
+                        else
+                        {
+                            textFinResNum.Text = "False";
+                        }
                         isOperator = false;
                         ChangeGUI(isOperator, ">");
                         break;
                     case "<":
-                        textFinResNum.Text = Fraction.IsFirstFractionLess(firstFraction, secondFraction);
+                        if (firstFraction < secondFraction)
+                        {
+                            textFinResNum.Text = "True";
+                        }
+                        else
+                        {
+                            textFinResNum.Text = "False";
+                        }
                         isOperator = false;
                         ChangeGUI(isOperator, "<");
                         break;
                     case "=":
-                        textFinResNum.Text = Fraction.AreFractionsEqual(firstFraction, secondFraction);
+                        if (firstFraction == secondFraction)
+                        {
+                            textFinResNum.Text = "True";
+                        }
+                        else
+                        {
+                            textFinResNum.Text = "False";
+                        }
                         isOperator = false;
                         ChangeGUI(isOperator, "=");
                         break;

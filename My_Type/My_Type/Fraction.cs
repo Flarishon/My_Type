@@ -17,11 +17,6 @@ namespace My_Type
             this.denumerator = denumerator;
         }
 
-        public string Verbose()
-        {
-            return String.Format("{0}/{1}", this.numerator, this.denumerator);
-        }
-
         public static int GetGCD(int firstNum, int secondNum)
         {
             while (secondNum != 0)
@@ -96,16 +91,7 @@ namespace My_Type
             return resFraction;
         }
 
-        //можно сделать операторы сравнения, просто нужно делать их попарно, то есть: если есть >, то должно быть и <
-        //только должно быть: оператор >, там все расписано, но в операторе < должно быть написано !(firstFraction > seconFraction)
-
-        public static Fraction ReduceFraction(Fraction fraction)
-        {
-            int gcd = GetGCD(fraction.numerator, fraction.denumerator);
-            return new Fraction(fraction.numerator / gcd, fraction.denumerator / gcd);
-        }
-
-        public static string IsFirstFractionGreater(Fraction firstFraction, Fraction secondFraction)
+        public static bool operator >(Fraction firstFraction, Fraction secondFraction)
         {
             int lcd = GetLCD(firstFraction.denumerator, secondFraction.denumerator);
 
@@ -114,15 +100,15 @@ namespace My_Type
 
             if (firstNum > secondNum)
             {
-                return "True";
+                return true;
             }
             else
             {
-                return "False";
+                return false;
             }
         }
 
-        public static string IsFirstFractionLess(Fraction firstFraction, Fraction secondFraction)
+        public static bool operator <(Fraction firstFraction, Fraction secondFraction)
         {
             int lcd = GetLCD(firstFraction.denumerator, secondFraction.denumerator);
 
@@ -131,15 +117,15 @@ namespace My_Type
 
             if (firstNum < secondNum)
             {
-                return "True";
+                return true;
             }
             else
             {
-                return "False";
+                return false;
             }
         }
 
-        public static string AreFractionsEqual(Fraction firstFraction, Fraction secondFraction)
+        public static bool operator ==(Fraction firstFraction, Fraction secondFraction)
         {
             int lcd = GetLCD(firstFraction.denumerator, secondFraction.denumerator);
 
@@ -148,12 +134,33 @@ namespace My_Type
 
             if (firstNum == secondNum)
             {
-                return "True";
+                return true;
             }
             else
             {
-                return "False";
+                return false;
             }
+        }
+
+        public static bool operator !=(Fraction firstFraction, Fraction secondFraction)
+        {
+            return !(firstFraction == secondFraction);
+        }
+
+        public static Fraction ReduceFraction(Fraction fraction)
+        {
+            int gcd = GetGCD(fraction.numerator, fraction.denumerator);
+            return new Fraction(fraction.numerator / gcd, fraction.denumerator / gcd);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return (Fraction)obj == this;
+        }
+
+        public override string ToString()
+        {
+            return $"numerator - {numerator}, denumerator - {denumerator}";
         }
     }
 }
